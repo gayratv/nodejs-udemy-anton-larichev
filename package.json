@@ -5,9 +5,11 @@
 	"main": "index.js",
 	"type": "commonjs",
 	"scripts": {
-		"start": "node ./dist/main.js",
+		"start": "node ./dist/src/main.js",
 		"dev": "nodemon",
 		"dev:inspect": "nodemon -e ts,json --exec node --inspect=localhost:9222 -r ts-node/register src/main.ts",
+		"dev:inspect2": "ts-node --files ./src/main.ts",
+		"dev:inspect3": "ts-node ./src/main.ts",
 		"lint": "eslint ./src/**",
 		"test": "jest",
 		"test:e2e": "jest --config jest.e2e.config.ts --coverage",
