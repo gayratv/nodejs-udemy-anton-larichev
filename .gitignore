@@ -1,3 +1,6 @@
 /dist
 /node_modules
 .idea
+.env
+weather-data.json
+prisma
