@@ -12,7 +12,7 @@
 		"lint": "eslint ./src/**",
 		"test": "jest",
 		"test:e2e": "jest --config jest.e2e.config.ts --coverage",
-		"generate": "prisma generate",
+		"generate": "prisma generate && prisma migrate dev --name init",
 		"lint:fix": "eslint ./src/** --fix",
 		"build": "tsc"
 	},
