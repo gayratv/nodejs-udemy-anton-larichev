@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "baseUrl": "./src",
+    "target": "ESNext",
+    "types": ["reflect-metadata","node"],
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "outDir": "dist"
+  },
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts"
+  ],
+
+  "ts-node": {
+    "esm": true,
+    "transpileOnly": true,
+    "files": true,
+    "experimentalResolver": true,
+    "experimentalSpecifierResolution": "node"
+
+  }
+}
