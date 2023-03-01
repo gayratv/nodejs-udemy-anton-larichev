@@ -5,7 +5,7 @@ function Component(id: number) {
   console.log('init');
   return (target: Function) => {
     console.log('run');
-    // target.prototype.id = id;
+    target.prototype.id = id;
   };
 }
 
@@ -60,6 +60,11 @@ function validate<T>(target: any, propertyKey: string, descriptor: TypedProperty
   };
 }
 
+function validate2(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+  const type = Reflect.getMetadata('design:type', target, propertyKey);
+  console.log('validate2');
+}
+
 class Point {
   constructor(public x: number, public y: number) {}
 }
@@ -77,12 +82,27 @@ export class User {
   }
 
   @validate
-  // ts inject this line @Reflect.metadata("design:type", Point)
-  /* start(value: Point, b: string) {
-    this._start = value;
-  }*/
+  // ts inject this
+  // __metadata("design:type", Point),
+  // __metadata("design:paramtypes", [Point])
   set start(value: Point) {
     this._start = value;
+  }
+
+  /*
+  __decorate([
+    validate2,
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Point, Number]),
+    __metadata("design:returntype", void 0)
+], User.prototype, "func1", null);
+   */
+  @validate2
+  func1(val: Point, b: number, c: string) {
+    console.log('func1');
+    const v1 = { ...val };
+    v1.x += b;
+    return 'aalo';
   }
 }
 
@@ -93,5 +113,8 @@ console.log('-- LINE');
 
 const line = new User();
 line.start = new Point(0, 0);
+
+// line.func1(new Point(10, 0), 5);
+
 // line.start(new Point(0, 0), 'a');
 // line.start({ x: 1, y: 1 }, 'b');
